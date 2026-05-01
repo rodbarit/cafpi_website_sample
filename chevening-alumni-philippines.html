@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chevening Alumni Philippines</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:      #002147;
+    --navy-mid:  #003060;
+    --navy-light:#E8EEF5;
+    --gold:      #C5A028;
+    --gold-light:#FBF5E0;
+    --white:     #FFFFFF;
+    --off-white: #F7F8FA;
+    --text:      #1C1C1C;
+    --muted:     #5A6270;
+    --border:    #DDE2EA;
+  }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--off-white);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    background: var(--navy);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .nav-logo-ring {
+    width: 40px; height: 40px;
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Libre Baskerville', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .nav-text { line-height: 1.2; }
+
+  .nav-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 14px;
+    color: var(--white);
+    font-weight: 700;
+  }
+
+  .nav-sub {
+    font-size: 10px;
+    color: rgba(255,255,255,0.55);
+    text-transform: uppercase;
+    letter-spacing: 1.8px;
+    font-weight: 500;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.3px;
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .nav-links a:hover {
+    color: var(--white);
+    border-bottom-color: var(--gold);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--navy);
+    position: relative;
+    overflow: hidden;
+    padding: 72px 2rem 80px;
+  }
+
+  .hero-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(197,160,40,0.15);
+    border: 1px solid rgba(197,160,40,0.4);
+    border-radius: 2px;
+    padding: 5px 14px;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero h1 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: var(--white);
+    line-height: 1.25;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-lead {
+    font-size: 16px;
+    color: rgba(255,255,255,0.65);
+    font-weight: 300;
+    max-width: 440px;
+    margin-bottom: 2rem;
+    line-height: 1.8;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .btn-gold {
+    background: var(--gold);
+    color: var(--navy);
+    padding: 11px 26px;
+    border: none;
+    border-radius: 2px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-gold:hover { background: #d4af38; transform: translateY(-1px); }
+
+  .btn-ghost {
+    background: transparent;
+    color: rgba(255,255,255,0.8);
+    padding: 11px 26px;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 2px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.6); color: white; }
+
+  .hero-deco {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    opacity: 0.2;
+  }
+
+  .hero-deco-ring {
+    width: 90px; height: 90px;
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+  }
+
+  .hero-deco-line {
+    width: 1px;
+    height: 60px;
+    background: var(--gold);
+  }
+
+  /* ── STATS ── */
+  .stats-bar {
+    background: var(--white);
+    border-bottom: 3px solid var(--gold);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    padding: 1.5rem 2.5rem;
+    text-align: center;
+    border-right: 1px solid var(--border);
+    flex: 1;
+    min-width: 130px;
+  }
+
+  .stat:last-child { border-right: none; }
+
+  .stat-n {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-l {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 2rem;
+  }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--navy);
+  }
+
+  .section-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.55rem;
+    color: var(--navy);
+    font-weight: 700;
+  }
+
+  .section-more {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--navy);
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+    cursor: pointer;
+  }
+
+  .section-more:hover { opacity: 1; }
+
+  /* ── EVENTS ── */
+  .events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .event-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--navy);
+    border-radius: 0 0 4px 4px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+  }
+
+  .event-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 28px rgba(0,33,71,0.1);
+  }
+
+  .event-card.gold-top { border-top-color: var(--gold); }
+  .event-card.mid-top { border-top-color: #1a4080; }
+
+  .event-body { padding: 1.25rem; }
+
+  .event-date-tag {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--navy);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .event-date-tag::before {
+    content: '';
+    width: 8px; height: 8px;
+    background: var(--gold);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .event-card h3 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1rem;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    line-height: 1.35;
+    font-weight: 700;
+  }
+
+  .event-card p {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+
+  .event-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1.25rem;
+    background: var(--off-white);
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 2px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+  }
+
+  .tag-annual    { background: var(--gold-light); color: #7A5A05; }
+  .tag-workshop  { background: var(--navy-light); color: var(--navy); }
+  .tag-networking{ background: #EDF3EA; color: #2A5A1A; }
+
+  /* ── ABOUT BAND ── */
+  .about-band {
+    background: var(--navy);
+    padding: 64px 2rem;
+  }
+
+  .about-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .about-rule {
+    width: 48px;
+    height: 3px;
+    background: var(--gold);
+    margin: 0 auto 1.5rem;
+  }
+
+  .about-band h2 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.75rem;
+    color: var(--white);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+
+  .about-band p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.9;
+    font-weight: 300;
+    margin-bottom: 2rem;
+  }
+
+  /* ── CONTACT ── */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 3rem;
+  }
+
+  .contact-info h3,
+  .contact-form h3 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.15rem;
+    color: var(--navy);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-row {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    margin-bottom: 1.25rem;
+  }
+
+  .c-icon {
+    width: 34px; height: 34px;
+    background: var(--navy-light);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .c-detail {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .c-detail strong {
+    display: block;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 1px;
+    font-size: 13px;
+  }
+
+  .fgroup { margin-bottom: 1rem; }
+
+  .fgroup label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--navy);
+    opacity: 0.7;
+    margin-bottom: 6px;
+  }
+
+  .fgroup input,
+  .fgroup textarea {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 10px 14px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    background: var(--white);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .fgroup input:focus,
+  .fgroup textarea:focus { border-color: var(--navy); }
+
+  .fgroup textarea { resize: vertical; min-height: 90px; }
+
+  .btn-navy {
+    background: var(--navy);
+    color: var(--white);
+    padding: 12px 28px;
+    border: none;
+    border-radius: 2px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.2s;
+  }
+
+  .btn-navy:hover { background: var(--navy-mid); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0D0D0D;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.75rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    color: rgba(255,255,255,0.45);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--gold); }
+
+  .footer-copy {
+    font-size: 11px;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .footer-copy span { color: rgba(255,255,255,0.6); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-badge { animation: fadeUp 0.5s 0.1s both; }
+  .hero h1   { animation: fadeUp 0.55s 0.2s both; }
+  .hero-lead { animation: fadeUp 0.55s 0.3s both; }
+  .hero-ctas { animation: fadeUp 0.55s 0.4s both; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .hero-deco { display: none; }
+    .hero-inner { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .stat { border-right: none; border-bottom: 1px solid var(--border); }
+    .stat:last-child { border-bottom: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#">
+    <div class="nav-logo-ring">CA</div>
+    <div class="nav-text">
+      <div class="nav-title">Chevening Alumni</div>
+      <div class="nav-sub">Philippines</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#events">Events</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">🇬🇧 UK Government Scholarship</div>
+      <h1>Connecting Philippine<br><em>Chevening Alumni</em></h1>
+      <p class="hero-lead">A network of emerging leaders who studied in the UK through the Chevening Scholarship — sharing knowledge, opportunity, and community across the Philippines.</p>
+      <div class="hero-ctas">
+        <a href="#events" class="btn-gold">Upcoming Events</a>
+        <a href="#contact" class="btn-ghost">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-deco">
+      <div class="hero-deco-ring"></div>
+      <div class="hero-deco-line"></div>
+      <div class="hero-deco-ring" style="width:50px;height:50px;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat">
+    <div class="stat-n">300+</div>
+    <div class="stat-l">Alumni</div>
+  </div>
+  <div class="stat">
+    <div class="stat-n">40+</div>
+    <div class="stat-l">Years</div>
+  </div>
+  <div class="stat">
+    <div class="stat-n">50+</div>
+    <div class="stat-l">UK Universities</div>
+  </div>
+  <div class="stat">
+    <div class="stat-n">12+</div>
+    <div class="stat-l">Events Yearly</div>
+  </div>
+</div>
+
+<!-- EVENTS -->
+<div class="section" id="events">
+  <div class="section-head">
+    <h2 class="section-title">Upcoming Events</h2>
+    <a class="section-more" href="#">View all →</a>
+  </div>
+
+  <div class="events-grid">
+    <div class="event-card">
+      <div class="event-body">
+        <div class="event-date-tag">May 15, 2026</div>
+        <h3>Annual Alumni Dinner &amp; Awards Night</h3>
+        <p>Celebrate our community's achievements and welcome the newest cohort of Chevening Scholars at our flagship gathering.</p>
+      </div>
+      <div class="event-foot">
+        <span>📍 Makati City</span>
+        <span class="tag tag-annual">Annual</span>
+      </div>
+    </div>
+
+    <div class="event-card gold-top">
+      <div class="event-body">
+        <div class="event-date-tag">June 5, 2026</div>
+        <h3>Leadership &amp; Policy Roundtable</h3>
+        <p>A candid discussion on governance and public sector reform, featuring alumni across branches of government.</p>
+      </div>
+      <div class="event-foot">
+        <span>📍 BGC, Taguig</span>
+        <span class="tag tag-workshop">Workshop</span>
+      </div>
+    </div>
+
+    <div class="event-card mid-top">
+      <div class="event-body">
+        <div class="event-date-tag">July 12, 2026</div>
+        <h3>Chevening PH Networking Social</h3>
+        <p>An informal evening for alumni to reconnect, share opportunities, and guide applicants through the Chevening journey.</p>
+      </div>
+      <div class="event-foot">
+        <span>📍 Quezon City</span>
+        <span class="tag tag-networking">Networking</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="about-band" id="about">
+  <div class="about-inner">
+    <div class="about-rule"></div>
+    <h2>Proudly Chevening.<br>Deeply Filipino.</h2>
+    <p>Chevening Alumni Philippines (CAP) connects graduates of the UK's prestigious Chevening Scholarship. We champion public leadership, international dialogue, and the enduring friendship between the Philippines and the United Kingdom.</p>
+    <a href="#contact" class="btn-gold">Join Our Community</a>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="section" id="contact">
+  <div class="section-head">
+    <h2 class="section-title">Get in Touch</h2>
+  </div>
+
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h3>Contact Details</h3>
+      <div class="contact-row">
+        <div class="c-icon">✉</div>
+        <div class="c-detail">
+          <strong>Email</strong>
+          hello@cheveningalumniphilippines.org
+        </div>
+      </div>
+      <div class="contact-row">
+        <div class="c-icon">📍</div>
+        <div class="c-detail">
+          <strong>Location</strong>
+          Metro Manila, Philippines
+        </div>
+      </div>
+      <div class="contact-row">
+        <div class="c-icon">🔗</div>
+        <div class="c-detail">
+          <strong>Social Media</strong>
+          @CheveningAlumniPH
+        </div>
+      </div>
+      <div class="contact-row">
+        <div class="c-icon">🇬🇧</div>
+        <div class="c-detail">
+          <strong>Official Chevening</strong>
+          chevening.org
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <h3>Send a Message</h3>
+      <div class="fgroup">
+        <label>Full Name</label>
+        <input type="text" placeholder="Juan dela Cruz" />
+      </div>
+      <div class="fgroup">
+        <label>Email Address</label>
+        <input type="email" placeholder="you@example.com" />
+      </div>
+      <div class="fgroup">
+        <label>Message</label>
+        <textarea placeholder="How can we help you?"></textarea>
+      </div>
+      <button class="btn-navy">Send Message</button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="#events">Events</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+    <a href="https://www.chevening.org" target="_blank">chevening.org</a>
+  </div>
+  <p class="footer-copy">© 2026 <span>Chevening Alumni Philippines</span> · All rights reserved</p>
+</footer>
+
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+</script>
+
+</body>
+</html>
